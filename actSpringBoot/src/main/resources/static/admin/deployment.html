@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>部署管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="/plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+	<script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+
+</head>
+<body class="hold-transition skin-red sidebar-mini"  >
+  <!-- .box-body -->
+                <div class="box box-primary" id="app">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">部署</h3>
+                    </div>
+
+                    <div class="box-body">
+                        <!-- 数据表格 -->
+                        <div class="table-box">
+			                  <!--数据列表-->
+			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+			                      <thead>
+			                          <tr>
+										  <th class="sorting_asc">流程名称</th>
+										  <th class="sorting_asc">流程Key</th>
+										  <th class="sorting_asc">文件路径</th>
+										  <th class="sorting_asc">状态</th>
+					                      <th class="text-center">操作</th>
+			                          </tr>
+			                      </thead>
+			                      <tbody>
+
+									  <tr v-for="flow in flowList">
+										  <td>{{flow.flowname}}</td>
+										  <td>{{flow.flowkey}}</td>
+										  <td>{{flow.filepath}}</td>
+										  <td>{{flow.state==0?"已部署":"未部署"}}</td>
+										  <td class="text-center">
+											  <button type="button" class="btn bg-olive btn-xs" @click="deploy(flow.id);">部署</button>
+										  </td>
+									  </tr>
+			                          <!--<tr v-for="flow in flowList">
+				                          <td>{{flow.flowname}}</td>
+				                          <td>{{flow.flowkey}}</td>
+				                          <td>{{flow.filepath}}</td>
+				                          <td></td>
+				                          <td>{{flow.createtime}}</td>
+		                                  <td class="text-center">
+		                                 	  <button type="button" class="btn bg-olive btn-xs" @click="deploy();">部署</button>
+		                                  </td>
+			                          </tr>-->
+
+			                      </tbody>
+			                  </table>
+			                  <!--数据列表/-->
+                        </div>
+                        <!-- 数据表格 /-->
+                     </div>
+                    <!-- /.box-body -->
+
+				</div>
+</body>
+<!--vue和axios引入-->
+<script src="/js/vuejs-2.5.16.js"></script>
+<script src="/js/axios-0.18.0.js"></script>
+<script src="/js/deployment.js"></script>
+</html>

@@ -1,0 +1,7 @@
+
+]
+java:S1192"GDefine a constant instead of duplicating this literal "userid" 3 times.(–Ý– 
+P
+java:S1854"":Remove this useless assignment to local variable "userId".(–Ý– 
+A
+java:S1481""+Remove this unused "userId" local variable.(–Ý– 

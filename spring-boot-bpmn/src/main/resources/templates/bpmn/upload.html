@@ -1,0 +1,61 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BPMN-JS</title>
+    <link th:href="@{/bpmn/css/diagram-js.css}"  rel="stylesheet">
+	<link th:href="@{/webuploader/webuploader.css}" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+	<div id="uploader" class="wu-example">
+	    <!--用来存放文件信息-->
+	    <div id="thelist" class="uploader-list"></div>
+	    <div class="btns" style="position: absolute; top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);  -moz-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%);transform: translate(-50%, -50%);">
+	        <div id="picker">请选择文件</div>
+	    </div>
+	</div>
+    <!-- <button id="save-button">print to console</button> -->
+    <script th:src="@{/libs/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/common.js}"></script>
+    <script th:src="@{/layer/layer.js}" type="text/javascript"></script>
+    <script th:src="@{/webuploader/webuploader.js}"  type="text/javascript" ></script>
+	<!-- endbuild -->
+    <script type="text/javascript">
+     var uploader = WebUploader.create({
+		    // swf文件路径
+		    swf:  'webuploader/Uploader.swf',
+		    // 文件接收服务端。
+		    server: 'http://webuploader.duapp.com/server/fileupload.php',
+		    // 选择文件的按钮。可选。
+		    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+		    pick: '#picker',
+		    // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+		    resize: false
+	  });
+	  var fileList = [];
+	  // 当有文件添加进来的时候
+      uploader.on("fileQueued", function(file) {
+            var fileInfo={};
+            fileInfo.fileName=file.name;
+            fileInfo.fileSize=WebUploader.formatSize(file.size, 1);
+            fileInfo.fileId=file.id;
+            fileInfo.fileNewName="";
+            fileList.push(fileInfo);
+        });
+       //当所有文件上传结束时触发
+       uploader.on("uploadFinished",function(){
+           $this.formNotify.fileInfo=JSON.stringify($this.notifyFileList);
+           vm.formSave();
+       });
+       //单个文件上传成功触发
+       uploader.on( "uploadSuccess", function(file,response) {
+          for(var i=0;i<vm.notifyFileList.length;i++){
+               if(file.id==vm.notifyFileList[i].fileId){
+                   vm.notifyFileList[i].fileNewName=response._raw;
+                   break;
+               }
+           }
+       });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>后台管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"> 
+	
+    <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="/plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+	<script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div id="app">
+   <!-- 内容区域 -->
+            <!-- 内容头部 -->
+            <section class="content-header">
+                <h1>
+                    控制面板
+                    <small>首页</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> 首页</a></li>
+                </ol>
+            </section>
+            <!-- 内容头部 /-->
+
+            <!-- 正文区域 -->
+            <section class="content">
+
+
+                <!-- 统计数值 -->
+                <div class="row">
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-aqua">
+                            <div class="inner">
+                                <h3>{{taskList.length}}</h3>
+                                <p>待处理任务</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="task-list.html" class="small-box-footer">详细 <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+                <!-- /.row -->
+            </section>
+            <!-- 正文区域 /-->
+
+        <!-- 内容区域 /-->
+</div>
+</body>
+</html>
+<!--vue和axios引入-->
+<script src="/js/vuejs-2.5.16.js"></script>
+<script src="/js/axios-0.18.0.js"></script>
+<script>
+    var app=new Vue({
+        el:'#app',
+        data:{
+            taskList:[]
+        },
+        created(){
+            this.getUserTask();
+        },
+        methods:{
+            getUserTask(){
+                axios.get('/flow/findUserTask')
+                    .then(resp => {
+                    console.info(resp.data);
+                //登录响应提示
+                app.taskList=resp.data;
+            })
+            }
+        }
+    });
+</script>

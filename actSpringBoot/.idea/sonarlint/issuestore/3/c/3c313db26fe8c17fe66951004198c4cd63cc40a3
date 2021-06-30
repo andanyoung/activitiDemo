@@ -1,0 +1,13 @@
+
+b
+java:S11924"LDefine a constant instead of duplicating this literal "/login.html" 3 times.(ÔÖÁ¥
+ 
+java:S1128"„Remove this unused import 'org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration'.(ÝÍ»æúÿÿÿÿ
+J
+java:S1128"5Remove this unused import 'net.bytebuddy.asm.Advice'.(Úë¼
+b
+java:S11924"LDefine a constant instead of duplicating this literal "/login.html" 3 times.(ÔÖÁ¥
+ 
+java:S1128"„Remove this unused import 'org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration'.(ÝÍ»æúÿÿÿÿ
+J
+java:S1128"5Remove this unused import 'net.bytebuddy.asm.Advice'.(Úë¼

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>任务列表</title>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    
+</head>
+<body class="hold-transition skin-red sidebar-mini">
+<div id="app">
+  <!-- .box-body -->
+                    <div class="box-header with-border">
+                        <h3 class="box-title">任务列表</h3>
+                    </div>
+
+                    <div class="box-body">
+
+                        <!-- 数据表格 -->
+                        <div class="table-box">
+
+                            <!--工具栏-->
+                            <div class="pull-left">
+                                <div class="form-group form-inline">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-tools pull-right">
+                                <div class="has-feedback">
+							                                         
+                                </div>
+                            </div>
+                            <!--工具栏/-->
+
+			                  <!--数据列表-->
+			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+			                      <thead>
+			                          <tr>
+										  <th class="sorting_asc">名称</th>
+									      <th class="sorting">目的地</th>
+									      <th class="sorting">预计天数</th>
+					                      <th class="text-center">开始时间</th>
+					                      <th class="text-center">结束时间</th>
+					                      <th class="text-center">流程状态</th>
+			                          </tr>
+			                      </thead>
+			                      <tbody>
+			                          <tr v-for="e in evectionlist">
+				                          <td>{{e.evectionName}}</td>
+									      <td>{{e.destination}}</td>
+		                                  <td>{{e.num}} 天</td>
+		                                  <td>{{e.beginDate}}</td>
+		                                  <td>{{e.endDate}}</td>
+		                                  <td>{{e.state}}</td>
+		                                  <td class="text-center">
+		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  >修改</button>                                           
+		                                  </td>
+			                          </tr>
+
+			                      </tbody>
+			                  </table>
+			                  <!--数据列表/-->
+                        </div>
+                        <!-- 数据表格 /-->
+                     </div>
+                    <!-- /.box-body -->
+<!-- 编辑窗口 -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" >
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">出差申请编辑</h3>
+		</div>
+		<div class="modal-body">		
+			<table class="table table-bordered table-striped"  width="800px">
+		      	<tr>
+		      		<td>申请名称</td>
+		      		<td><input  class="form-control" v-model="evection.evectionName" placeholder="申请名称" >  </td>
+		      	</tr>
+				<tr>
+					<td>预计天数</td>
+					<td><input  class="form-control" v-model="evection.num" placeholder="预计天数">  </td>
+				</tr>
+				<tr>
+					<td>开始时间</td>
+					<td><input  class="form-control" v-model="evection.beginDate" placeholder="开始时间">  </td>
+				</tr>
+				<tr>
+					<td>结束时间</td>
+					<td><input  class="form-control" v-model="evection.endDate" placeholder="结束时间">  </td>
+				</tr>
+				<tr>
+					<td>目的地</td>
+					<td><input  class="form-control" v-model="evection.destination" placeholder="目的地">  </td>
+				</tr>
+				<tr>
+					<td>出差事由</td>
+					<td><input  class="form-control" v-model="evection.reson" placeholder="出差事由">  </td>
+				</tr>
+			 </table>				
+		</div>
+		<div class="modal-footer">						
+			<button class="btn btn-success" data-dismiss="modal" @click="add();" aria-hidden="true">保存</button>
+			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+		</div>
+	  </div>
+	</div>
+</div>
+</div>
+</body>
+</html>
+<!--vue和axios引入-->
+<script src="/js/vuejs-2.5.16.js"></script>
+<script src="/js/axios-0.18.0.js"></script>
+<script src="/js/task.js"></script>
